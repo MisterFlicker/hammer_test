@@ -1,10 +1,6 @@
 install: # создание или обновление виртуального окружения
 	poetry install
 
-install-dep: # установка зав-тей для деплоя
-	poetry add Django
-	poetry add psycopg2-binary
-
 build: # выполнение сборки пакета
 	poetry build
 
