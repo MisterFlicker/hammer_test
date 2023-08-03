@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,8 +26,11 @@ SECRET_KEY = 'django-insecure-cbxxo7o$53iu89=_-mvgs8j+_z1w%f^!g-l09s&j@spz&jl8g#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -77,9 +81,10 @@ WSGI_APPLICATION = 'hammer_test.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hammer',
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://andrey:fdLAWPbG4Aml7SKIUaIOepIQo3YUAtCF@dpg-cj5umog70cmc738s8kc0-a.oregon-postgres.render.com/phones_n_codes',
+        conn_max_age=600
     }
 }
 
