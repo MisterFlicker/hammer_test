@@ -85,7 +85,7 @@ DATABASES = {
         # Feel free to alter this value to suit your needs.
         default='postgres://andrey:fdLAWPbG4Aml7SKIUaIOepIQo3YUAtCF@dpg-cj5umog70cmc738s8kc0-a.oregon-postgres.render.com/phones_n_codes',
         conn_max_age=600
-    }
+    )
 }
 
 
