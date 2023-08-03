@@ -1,5 +1,7 @@
 install: # создание или обновление виртуального окружения
 	poetry install
+	python manage.py makemigrations
+	python manage.py migrate
 
 build: # выполнение сборки пакета
 	poetry build
