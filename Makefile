@@ -6,6 +6,7 @@ install: # создание или обновление виртуального
 build: # выполнение сборки пакета
 	poetry build
 
+
 publish: # отладка публикации
 	poetry publish --dry-run
 
