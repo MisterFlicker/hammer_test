@@ -2,8 +2,6 @@ install: # создание или обновление виртуального
 	poetry install
 
 install-dep: # установка зав-тей для деплоя
-	python -m pip install Django
-	pip install psycopg2-binary
 	poetry add Django
 	poetry add psycopg2-binary
 
