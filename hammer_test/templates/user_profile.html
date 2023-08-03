@@ -1,0 +1,39 @@
+<h2>Собственный инвайт-код</h2>
+<p>
+    {{ self_code }}
+
+</p>
+
+<h2>Введенный инвайт-код</h2>
+{% if entered_code != '' %}
+    <p>
+        {{ entered_code }}
+    </p>
+{% endif %}
+
+{% if entered_code == '' %}
+    <form action="{% url 'user_profile' phone %}" method="POST">
+        {% csrf_token %}
+            <table border="1">
+                {{ form }}
+            </table>
+            <input type="submit" name="form1" value="Сохранить">
+    </form>
+{% endif %}
+
+{% if messages %}
+    <div class="messages">
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+<h2>Список номеров пользователей, воспользовавшихся инвайт-кодом:</h2>
+<ul>
+    {% for i in other_phones %}
+    <li>{{ i }};</li>
+    {% endfor %}
+</ul>

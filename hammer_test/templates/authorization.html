@@ -1,0 +1,7 @@
+<form action="{% url 'enter_code' %}" method="GET">
+    {% csrf_token %}
+    <table border="1">
+        {{ form }}
+    </table>
+    <input type="submit" value="Отправить код на указанный номер">
+</form>

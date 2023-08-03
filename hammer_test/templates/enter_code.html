@@ -1,0 +1,20 @@
+{% if status == 'exists' %}
+    <form action="{% url 'user_profile' phone %}" method="GET">
+        {% csrf_token %}
+        {{ form }}
+        <input type="text" name="name" placeholder="Enter any 4-digit number">
+        <input type="submit" name="form2" value="Сохранить">
+    </form>
+{% endif %}
+
+{% if status == 'not_exists' %}
+    <form action="{% url 'user_profile' phone %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <label>
+            Код проверки:
+            <input type="text" name="name" placeholder="Enter any 4-digit number">
+        </label>
+        <input type="submit" name="form2" value="Сохранить">
+    </form>
+{% endif %}
