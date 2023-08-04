@@ -3,16 +3,14 @@ from django.views.decorators.http import require_http_methods
 from .models import Phones_n_codes
 from .forms import PhoneForm
 import time
-from django.views.decorators.csrf import csrf_exempt
 
 
-@csrf_exempt
 @require_http_methods(['GET'])
 def authorization(request):
     form = PhoneForm()
     return render(request, 'authorization.html', {'form': form})
 
-@csrf_exempt
+
 @require_http_methods(['GET'])
 def enter_code(request):
     form = PhoneForm(request.GET)

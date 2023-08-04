@@ -14,7 +14,6 @@ def generate_code():
     return rand_code
 
 
-@csrf_exempt
 @require_http_methods(['GET', 'POST'])
 def user_profile(request, phone):
 

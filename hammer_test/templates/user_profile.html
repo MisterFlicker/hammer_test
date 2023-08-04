@@ -13,7 +13,6 @@
 
 {% if entered_code == '' %}
     <form action="{% url 'user_profile' phone %}" method="POST">
-        {% csrf_token %}
             <table border="1">
                 {{ form }}
             </table>
