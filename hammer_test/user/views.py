@@ -17,6 +17,24 @@ def generate_code():
 @require_http_methods(['GET', 'POST'])
 def user_profile(request, phone):
 
+    if request.method == 'GET':
+        form = PhoneForm(request.GET)
+        if phone_n_codes.entered_code:
+            entered_code = phone_n_codes.entered_code
+        else:
+            entered_code = ''
+        return render(
+            request,
+            'user_profile.html',
+            {
+                'form': form,
+                'phone': phone,
+                'entered_code': entered_code,
+                'self_code': self_code,
+                'other_phones': list_of_phones,
+            }
+        )
+
     if request.method == 'POST' and ("form1" not in request.POST):
         form = PhoneForm(request.POST)
         if form.is_valid():
@@ -94,33 +112,14 @@ def user_profile(request, phone):
                         'other_phones': list_of_phones,
                     }
                 )
-        else:
-            messages.error(request, "This code doesn't exist.")
-            return render(
-                request,
-                'user_profile.html',
-                {
-                    'form': form,
-                    'phone': phone,
-                    'entered_code': '',
-                    'self_code': self_code,
-                    'other_phones': list_of_phones,
-                }
-            )
-
-    if request.method == 'GET':
-        form = PhoneForm(request.GET)
-        if phone_n_codes.entered_code:
-            entered_code = phone_n_codes.entered_code
-        else:
-            entered_code = ''
+        messages.error(request, "This code doesn't exist.")
         return render(
             request,
             'user_profile.html',
             {
                 'form': form,
                 'phone': phone,
-                'entered_code': entered_code,
+                'entered_code': '',
                 'self_code': self_code,
                 'other_phones': list_of_phones,
             }
