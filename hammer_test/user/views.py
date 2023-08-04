@@ -52,6 +52,20 @@ def user_profile(request, phone):
 
     if request.method == 'POST' and "form1" in request.POST:
         form = CodeForm(request.POST, instance=phone_n_codes)
+        check = Phones_n_codes.objects.get(self_code=request.POST.get('entered_code'))
+        if check.phone == phone:
+            messages.error(request, "You can't enter your own invite-code.")
+            return render(
+                request,
+                'user_profile.html',
+                {
+                    'form': form,
+                    'phone': phone,
+                    'entered_code': '',
+                    'self_code': self_code,
+                    'other_phones': list_of_phones,
+                }
+            )
         if Phones_n_codes.objects.filter(self_code=request.POST.get('entered_code')).exists():
             if form.is_valid():
                 form.save()
