@@ -6,6 +6,7 @@ from hammer_test.authorization.forms import PhoneForm
 import random
 import string
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 
 def generate_code():
@@ -14,6 +15,7 @@ def generate_code():
     return rand_code
 
 
+@csrf_exempt
 @require_http_methods(['GET', 'POST'])
 def user_profile(request, phone):
 
