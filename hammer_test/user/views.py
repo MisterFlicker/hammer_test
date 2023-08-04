@@ -66,7 +66,8 @@ def user_profile(request, phone):
                     'other_phones': list_of_phones,
                 }
             )
-        if Phones_n_codes.objects.filter(self_code=request.POST.get('entered_code')).exists():
+        is_exist = Phones_n_codes.objects.filter(self_code=request.POST.get('entered_code')).exists()
+        if is_exist:
             if form.is_valid():
                 form.save()
                 entered_code = phone_n_codes.entered_code
