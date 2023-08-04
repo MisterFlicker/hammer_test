@@ -6,7 +6,6 @@ from hammer_test.authorization.forms import PhoneForm
 import random
 import string
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt
 
 
 def generate_code():
@@ -110,7 +109,7 @@ def user_profile(request, phone):
             )
 
     if request.method == 'GET':
-        form = CodeForm(request.GET)
+        form = PhoneForm(request.GET)
         if phone_n_codes.entered_code:
             entered_code = phone_n_codes.entered_code
         else:
