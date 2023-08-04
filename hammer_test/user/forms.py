@@ -1,9 +1,8 @@
-from django import forms
+from django.forms import ModelForm
 from hammer_test.authorization.models import Phones_n_codes
 
 
-class CodeForm(forms.ModelForm):
-    entered_code = forms.CharField(max_length=6)
+class CodeForm(ModelForm):
     class Meta:
         model = Phones_n_codes
         fields = ['entered_code']
