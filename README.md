@@ -25,6 +25,8 @@ Type in terminal:
 1) make install
 2) make build
 
+Also need to create postgresql database in environment named DATABASE_URL.
+
 ## How to use
 
 Type in terminal:
